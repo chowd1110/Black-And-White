@@ -42,6 +42,7 @@ public class View extends Application implements Observer{
 
 	private GridPane createBoard() {
 		
+		
 		return null;
 	}
 
