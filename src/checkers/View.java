@@ -24,14 +24,17 @@ public class View extends Application implements Observer{
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setTitle("Black and White");
+		
 		BorderPane root =  new BorderPane();
+		
+		root.setRight(createRightPanel()); 
+		root.setBottom(createBottomPanel());
+        root.setCenter(createBoard());
+		
+		
 		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
 		primaryStage.show();
-		root.setRight(createRightPanel()); 
-		root.setBottom(createBottomPanel());
-
-		root.setCenter(createBoard());
 		
 		
 		
