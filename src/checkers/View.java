@@ -3,7 +3,11 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javafx.application.Application;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class View extends Application implements Observer{
@@ -16,15 +20,25 @@ public class View extends Application implements Observer{
 
 	}
 	
-
 	@Override
-	public void update(Observable o, Object arg) {
+	public void start(Stage primaryStage) throws Exception {
+		primaryStage.setTitle("Black and White");
+		BorderPane root =  new BorderPane();
+		Scene scene = new Scene(root);
+		primaryStage.setScene(scene);
+		primaryStage.show();
+		
+		
+		
+		
 		
 		
 	}
+	
+	
 
 	@Override
-	public void start(Stage primaryStage) throws Exception {
+	public void update(Observable o, Object arg) {
 		
 		
 	}
