@@ -77,9 +77,33 @@ public class View extends Application implements Observer{
     			
     		
     		}
-		}
+		} 
+		AddCheckers(board);
 		
 		return board;
+	}
+
+	private void AddCheckers(GridPane board) {
+		
+		int[][] blackCheckerPos = {{0,1},{1,0},{1,2},{2,1},{3,0},
+				{3,2},{4,1},{5,0},{5,2},{6,1},{7,0},{7,2}};
+		int[][] whiteCheckerPos = {{0,5},{0,7},{1,6},{2,5},{2,7},{3,6},{4,5},
+				{4,7},{5,6},{6,5},{6,7},{7,6}};
+		
+		for (int i = 0; i < blackCheckerPos.length; i++) {
+			
+			int columnIndex = blackCheckerPos[i][0];
+			int rowIndex = blackCheckerPos[i][1];
+			board.add(new Checker(blackCheckerPos[i],"Black"), columnIndex, rowIndex);
+		}
+		
+        for (int i = 0; i < whiteCheckerPos.length; i++) {
+			
+			int columnIndex = whiteCheckerPos[i][0];
+			int rowIndex = whiteCheckerPos[i][1];
+			board.add(new Checker(whiteCheckerPos[i],"Black"), columnIndex, rowIndex);
+		}
+		
 	}
 
 	private HBox createBottomPanel() {
