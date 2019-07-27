@@ -3,6 +3,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,6 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class View extends Application implements Observer{
@@ -32,7 +34,7 @@ public class View extends Application implements Observer{
 		
 		root.setRight(createRightPanel()); 
 		root.setBottom(createBottomPanel());
-        root.setCenter(createBoard());
+        root.setCenter(this.createBoard());
 		
 		
 		Scene scene = new Scene(root);
@@ -46,6 +48,7 @@ public class View extends Application implements Observer{
 		
 		
 	}
+	
 
 	private GridPane createBoard() {
 		GridPane board = new GridPane();
@@ -74,15 +77,15 @@ public class View extends Application implements Observer{
     				    colour = 0;
     				}
     			}
-    			board.add(tile, column, row);
     			
-    		
+    			board.add(tile, column, row);
     		}
 		} 
 		AddCheckers(board);
 		
 		return board;
 	}
+	
 
 	private void AddCheckers(GridPane board) {
 		// the starting coordinates of the checkers
@@ -99,6 +102,7 @@ public class View extends Application implements Observer{
 			Checker checker = new Checker(blackCheckerPos[i],"Black");
 			checker.setTranslateX(15);
 			checker.getStyleClass().add("black-checker");
+			checker.setOnAction(e -> this.switchWindow());
 			board.add(checker, columnIndex, rowIndex);
 		}
 		
@@ -107,14 +111,33 @@ public class View extends Application implements Observer{
 			int columnIndex = whiteCheckerPos[i][0];
 			int rowIndex = whiteCheckerPos[i][1];
 			Checker checker = new Checker(whiteCheckerPos[i],"White");
+			
 			checker.setTranslateX(15); // to align the checkers to the center of the tiles
 			checker.getStyleClass().add("white-checker");
+			checker.setOnAction(e -> this.switchWindow());
 			board.add(checker, columnIndex, rowIndex);
 		}
-        
-      
+              		
+	}
+	
+	private void switchWindow() {
+		Stage window = new Stage();
+		window.initModality(Modality.APPLICATION_MODAL);
+		
+		window.setTitle("Make Your Move");
+		
+		HBox box = new HBox();
+		Button left = new Button("left");
+		Button right = new Button("right");
+		box.getChildren().addAll(left, right);
+		box.setAlignment(Pos.CENTER);
+		Scene scene = new Scene(box, 300, 300);
+		
+		window.setScene(scene);
+		window.showAndWait();
 		
 	}
+	
 
 	private HBox createBottomPanel() {
 		
