@@ -106,7 +106,7 @@ public class View extends Application implements Observer{
 			Checker checker = new Checker(blackCheckerPos[i],"Black");
 			checker.setTranslateX(15);
 			checker.getStyleClass().add("black-checker");
-			checker.setOnAction(e -> this.switchWindow());
+			checker.setOnAction(e -> this.switchWindow((Checker) e.getSource()));
 			board.add(checker, columnIndex, rowIndex);
 		}
 		
@@ -118,13 +118,14 @@ public class View extends Application implements Observer{
 			
 			checker.setTranslateX(15); // to align the checkers to the center of the tiles
 			checker.getStyleClass().add("white-checker");
-			checker.setOnAction(e -> this.switchWindow());
+			checker.setOnAction(e -> this.switchWindow((Checker) e.getSource()));
+			
 			board.add(checker, columnIndex, rowIndex);
 		}
               		
 	}
 	
-	private void switchWindow() {
+	private void switchWindow(Checker checker) {
 		Stage window = new Stage();
 		window.initModality(Modality.APPLICATION_MODAL);
 		
@@ -133,6 +134,8 @@ public class View extends Application implements Observer{
 		HBox box = new HBox();
 		Button left = new Button("left");
 		left.setOnAction(e -> this.controller.moveLeft());
+		
+		
 		Button right = new Button("right");
 		right.setOnAction(e -> this.controller.moveRight());
 		box.getChildren().addAll(left, right);
