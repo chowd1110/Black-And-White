@@ -132,8 +132,9 @@ public class View extends Application implements Observer{
 		
 		HBox box = new HBox();
 		Button left = new Button("left");
-		
+		left.setOnAction(e -> this.controller.moveLeft());
 		Button right = new Button("right");
+		right.setOnAction(e -> this.controller.moveRight());
 		box.getChildren().addAll(left, right);
 		box.setAlignment(Pos.CENTER);
 		Scene scene = new Scene(box, 300, 300);
