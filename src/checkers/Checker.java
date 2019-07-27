@@ -2,7 +2,7 @@ package checkers;
 
 import javafx.scene.control.Button;
 
-public class Checker extends Button {
+public class Checker extends Button {	
 	private int[] position;
 	private String colour;
 	
@@ -11,5 +11,18 @@ public class Checker extends Button {
 		this.colour = colour;
 		
 	}
+	
+	public int[] getPosition() {
+		return position;
+	}
+
+	public void setPosition(int[] position) {
+		this.position = position;
+	}
+
+	
+	
+	
+	
 
 }
