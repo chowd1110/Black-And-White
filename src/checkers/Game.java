@@ -7,4 +7,12 @@ public class Game {
 		this.model = model;
 	}
 
+    public void moveLeft() {
+	
+    }
+    
+    public void moveRight() {
+    	
+    }
+
 }

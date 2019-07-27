@@ -28,7 +28,11 @@ public class View extends Application implements Observer{
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		
+		this.controller = new Game(this.model);
+		
 		primaryStage.setTitle("Black and White");
+		
 		
 		BorderPane root =  new BorderPane();
 		
@@ -128,6 +132,7 @@ public class View extends Application implements Observer{
 		
 		HBox box = new HBox();
 		Button left = new Button("left");
+		
 		Button right = new Button("right");
 		box.getChildren().addAll(left, right);
 		box.setAlignment(Pos.CENTER);
