@@ -7,11 +7,11 @@ public class Game {
 		this.model = model;
 	}
 
-    public void moveLeft() {
+    public void moveLeft(Checker checker) {
 	
     }
     
-    public void moveRight() {
+    public void moveRight(Checker checker) {
     	
     }
 

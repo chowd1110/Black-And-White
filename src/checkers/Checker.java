@@ -20,6 +20,7 @@ public class Checker extends Button {
 		this.position = position;
 	}
 
+
 	
 	
 	
