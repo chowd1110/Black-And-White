@@ -1,6 +1,8 @@
 package checkers;
 
-public class CheckerBoard {
+import java.util.Observable;
+
+public class CheckerBoard extends Observable {
 	private String[][] board = new String[8][8];
 	
 	public CheckerBoard() {

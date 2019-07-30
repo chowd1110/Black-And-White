@@ -28,8 +28,10 @@ public class View extends Application implements Observer{
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		
+		this.model = new CheckerBoard();
+		this.model.addObserver(this);
 		this.controller = new Game(this.model);
+		
 		
 		primaryStage.setTitle("Black and White");
 		
