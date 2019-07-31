@@ -41,6 +41,27 @@ public class CheckerBoard extends Observable {
 			
 		}
 	}
+
+	public void updateBoard(Checker checker, int[] newPosition) {
+		int currentColumn = checker.getPosition()[0];
+		int currentRow = checker.getPosition()[1];
+		
+		String colour = checker.getColour();
+		// remove the checker from its current position
+		this.board[currentColumn][currentRow] = "Empty";
+		
+		int newColumn = newPosition[0];
+		int newRow = newPosition[1];
+		// add the checker to its new position
+		this.board[newColumn][newRow] = colour;
+		// ask View to update itself
+		this.setChanged();
+		this.notifyObservers(checker);
+		
+	
+		
+		
+	}
 	
 	
 }
