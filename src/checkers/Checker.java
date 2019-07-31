@@ -20,6 +20,14 @@ public class Checker extends Button {
 		this.position = position;
 	}
 
+	public String getColour() {
+		return colour;
+	}
+
+	public void setColour(String colour) {
+		this.colour = colour;
+	}
+
 
 	
 	
