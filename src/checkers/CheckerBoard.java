@@ -41,6 +41,13 @@ public class CheckerBoard extends Observable {
 			
 		}
 	}
+	
+	public String getCheckerAtPosition(int[] position) {
+		int column = position[0];
+		int row = position[1];
+		return this.board[column][row];
+		
+	}
 
 	public void updateBoard(Checker checker, int[] newPosition) {
 		int currentColumn = checker.getPosition()[0];
@@ -56,11 +63,8 @@ public class CheckerBoard extends Observable {
 		this.board[newColumn][newRow] = colour;
 		// ask View to update itself
 		this.setChanged();
-		this.notifyObservers(checker);
-		
+		this.notifyObservers(checker); 
 	
-		
-		
 	}
 	
 	
