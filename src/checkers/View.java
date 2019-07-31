@@ -40,7 +40,8 @@ public class View extends Application implements Observer{
 		
 		root.setRight(createRightPanel()); 
 		root.setBottom(createBottomPanel());
-        root.setCenter(this.createBoard());
+		this.board = this.createBoard();
+        root.setCenter(board);
 		
 		
 		Scene scene = new Scene(root);
