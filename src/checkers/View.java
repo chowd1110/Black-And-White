@@ -136,7 +136,11 @@ public class View extends Application implements Observer{
 		
 		HBox box = new HBox();
 		Button left = new Button("left");
-		left.setOnAction(e -> this.controller.moveLeft(checker));
+		left.setOnAction(e -> {
+			this.controller.moveLeft(checker);
+			window.close();
+			
+		});
 		
 		
 		Button right = new Button("right");
@@ -147,7 +151,7 @@ public class View extends Application implements Observer{
 		
 		window.setScene(scene);
 		window.showAndWait();
-		
+		window.close();
 	}
 	
 
@@ -162,8 +166,11 @@ public class View extends Application implements Observer{
 	}
 
 	@Override
-	public void update(Observable o, Object arg) {
+	public void update(Observable o, Object checker) {
+		this.board.getChildren().remove(checker); // remove checker from its current position on the board
+		int[] position = ((Checker) checker).getPosition();
 		
+		this.board.add((Node)checker,position[0], position[1]); // add checker to new position
 		
 	}
 
