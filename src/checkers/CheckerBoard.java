@@ -54,6 +54,12 @@ public class CheckerBoard extends Observable {
 		int row = position[1];
 		this.board[column][row] = "Empty";
 	}
+	
+	private void addCheckerAtPosition(String colour, int[] position ) {
+		int column = position[0];
+		int row = position[1];
+		this.board[column][row] = colour;
+	}
 
 	public void updateBoard(Checker checker, int[] previousPosition) {
 		this.removeCheckerAtPosition(previousPosition); // remove checker from old position
@@ -74,5 +80,5 @@ public class CheckerBoard extends Observable {
 	
 	}
 	
-	
+
 }
