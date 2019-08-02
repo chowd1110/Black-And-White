@@ -10,6 +10,7 @@ public class Checker extends Button {
 	public Checker(int[] pos, String colour) {
 		this.position = pos;
 		this.colour = colour;
+		this.jumped = false;
 		
 	}
 	
