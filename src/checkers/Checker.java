@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 public class Checker extends Button {	
 	private int[] position;
 	private String colour;
+	private boolean jumped;
 	
 	public Checker(int[] pos, String colour) {
 		this.position = pos;
@@ -27,6 +28,16 @@ public class Checker extends Button {
 	public void setColour(String colour) {
 		this.colour = colour;
 	}
+
+	public boolean hasJumped() {
+		return jumped;
+	}
+
+	public void setJumped(boolean jumped) {
+		this.jumped = jumped;
+	}
+	
+	
 
 
 	
