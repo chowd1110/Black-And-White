@@ -1,8 +1,10 @@
 package checkers;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -20,6 +22,7 @@ public class View extends Application implements Observer{
 	private GridPane board;
 	private CheckerBoard model;
 	private Game controller;
+	private ArrayList <Checker> checkers = new ArrayList<Checker>();
 
 	public static void main(String[] args) {
 		launch(args);
@@ -107,6 +110,7 @@ public class View extends Application implements Observer{
 			int columnIndex = blackCheckerPos[i][0];
 			int rowIndex = blackCheckerPos[i][1];
 			Checker checker = new Checker(blackCheckerPos[i],"Black");
+			this.checkers.add(checker);
 			checker.setTranslateX(15);
 			checker.getStyleClass().add("black-checker");
 			checker.setOnAction(e -> this.switchWindow((Checker) e.getSource()));
@@ -118,7 +122,7 @@ public class View extends Application implements Observer{
 			int columnIndex = whiteCheckerPos[i][0];
 			int rowIndex = whiteCheckerPos[i][1];
 			Checker checker = new Checker(whiteCheckerPos[i],"White");
-			
+			this.checkers.add(checker);
 			checker.setTranslateX(15); // to align the checkers to the center of the tiles
 			checker.getStyleClass().add("white-checker");
 			checker.setOnAction(e -> this.switchWindow((Checker) e.getSource()));
@@ -167,11 +171,53 @@ public class View extends Application implements Observer{
 
 	@Override
 	public void update(Observable o, Object checker) {
-		this.board.getChildren().remove(checker); // remove checker from its current position on the board
-		int[] position = ((Checker) checker).getPosition();
 		
-		this.board.add((Node)checker,position[0], position[1]); // add checker to new position
+		Checker checkerToRemove = (Checker) checker;
+		this.board.getChildren().remove(checkerToRemove); // remove checker from its current position on the board
+		int[] positionOfCheckerToRemove = checkerToRemove.getPosition();
+		
+		if (checkerToRemove.hasJumped()) {
+			
+			    if(checkerToRemove.getColour() == "Black") {
+			    	int[] positionOfCheckerJumped = {positionOfCheckerToRemove[0] + 1 , 
+			    			positionOfCheckerToRemove[1] - 1};
+			    	
+			    	this.removeJumpedChecker(positionOfCheckerJumped);
+			    	
+			    }
+			    else {
+			    	
+			    }
+			
+			
+			
+		}
+		
+		this.board.add((Node)checker,positionOfCheckerToRemove[0], positionOfCheckerToRemove[1]); // add checker to new position
+		
 		
 	}
+
+	private void removeJumpedChecker(int[] position) {
+		int column = position[0];
+		int row = position[1];
+		//ObservableList<Node> childrens = this.board.getChildren();
+		//Checker checker = null;
+		
+		for (Checker checker: this.checkers) {
+			 if(checker.getPosition()[0] == column && checker.getPosition()[1] == row) {
+				 
+		
+				 this.board.getChildren().remove(checker);
+				 //this.checkers.remove(checker);
+			 }
+		}
+	
+		
+	}
+	
+	
+	
+	
 
 }

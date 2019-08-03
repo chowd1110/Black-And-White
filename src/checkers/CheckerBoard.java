@@ -78,7 +78,6 @@ public class CheckerBoard extends Observable {
 		this.addCheckerAtPosition(checker.getColour(), checker.getPosition());
         this.setChanged();
         this.notifyObservers(checker);
-		
 	
 	}
 	

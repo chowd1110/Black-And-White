@@ -8,6 +8,7 @@ public class blackCheckerStrategy {
 	}
 
 	public void moveLeft(Checker checker) {
+		
 		int[] currentPosition = checker.getPosition();
 		int[] newPosition =  {currentPosition[0] - 1 , currentPosition[1] + 1}; 
 		// check if newPosition is inside the board here
@@ -20,7 +21,6 @@ public class blackCheckerStrategy {
 		
 		else {
 			
-			
 			if (checkerAtNewPosition == "Empty") { // there is neither a white or black checker at newPosition
 				checker.setPosition(newPosition);
 				this.model.updateBoard(checker, currentPosition);
@@ -31,15 +31,9 @@ public class blackCheckerStrategy {
 				checker.setJumped(true);
 				this.model.updateBoard(checker, currentPosition, newPosition);
 			}
-			
-				
-			
-			
+						
 		}
 		
 	}
 	
-	
-	
-
 }
