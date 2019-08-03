@@ -172,17 +172,17 @@ public class View extends Application implements Observer{
 	@Override
 	public void update(Observable o, Object checker) {
 		
-		Checker checkerToRemove = (Checker) checker;
-		this.board.getChildren().remove(checkerToRemove); // remove checker from its current position on the board
-		int[] positionOfCheckerToRemove = checkerToRemove.getPosition();
+		Checker checkerToModify = (Checker) checker;
+		this.board.getChildren().remove(checkerToModify); // remove checker from its current position on the board
+		int[] positionOfCheckerToModify = checkerToModify.getPosition();
 		
-		if (checkerToRemove.hasJumped()) {
+		if (checkerToModify.hasJumped()) {
 			
-			    if(checkerToRemove.getColour() == "Black") {
-			    	int[] positionOfCheckerJumped = {positionOfCheckerToRemove[0] + 1 , 
-			    			positionOfCheckerToRemove[1] - 1};
+			    if(checkerToModify.getColour() == "Black") {
+			    	int[] positionOfJumpedChecker = {positionOfCheckerToModify[0] - 1 , 
+			    			positionOfCheckerToModify[1] + 1};
 			    	
-			    	this.removeJumpedChecker(positionOfCheckerJumped);
+			    	this.removeJumpedChecker(positionOfJumpedChecker);
 			    	
 			    }
 			    else {
@@ -190,10 +190,11 @@ public class View extends Application implements Observer{
 			    }
 			
 			
-			
+	   
 		}
+		this.board.add((Node)checker,positionOfCheckerToModify[0], positionOfCheckerToModify[1]); // add checker to new position	
 		
-		this.board.add((Node)checker,positionOfCheckerToRemove[0], positionOfCheckerToRemove[1]); // add checker to new position
+		
 		
 		
 	}
@@ -201,19 +202,12 @@ public class View extends Application implements Observer{
 	private void removeJumpedChecker(int[] position) {
 		int column = position[0];
 		int row = position[1];
-		//ObservableList<Node> childrens = this.board.getChildren();
-		//Checker checker = null;
 		
 		for (Checker checker: this.checkers) {
 			 if(checker.getPosition()[0] == column && checker.getPosition()[1] == row) {
-				 
-		
-				 this.board.getChildren().remove(checker);
-				 //this.checkers.remove(checker);
+				 this.board.getChildren().remove(checker);			
 			 }
-		}
-	
-		
+		}		
 	}
 	
 	
