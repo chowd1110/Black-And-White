@@ -10,8 +10,12 @@ public class blackCheckerStrategy {
 	public void moveLeft(Checker checker) {
 		
 		int[] currentPosition = checker.getPosition();
-		int[] newPosition =  {currentPosition[0] - 1 , currentPosition[1] + 1}; 
+		int[] newPosition =  {currentPosition[0] - 1 , currentPosition[1] + 1}; // CHECK
 		// check if newPosition is inside the board here
+		if (!(this.isCheckerWithinBoard(newPosition))) {
+			// window that says checker is out of bounds
+			return;
+		}
 		
 		String checkerAtNewPosition = this.model.getCheckerAtPosition(newPosition);
 		
@@ -39,7 +43,13 @@ public class blackCheckerStrategy {
 		
 	   
 		int[] checkerPositionAfterJumping = {jumpedCheckerPosition[0] - 1 , 
-				jumpedCheckerPosition[1] + 1};
+				jumpedCheckerPosition[1] + 1}; //CHECK
+		
+		if (!(this.isCheckerWithinBoard(checkerPositionAfterJumping))) {
+			// window that says checker is out of bounds
+			return;
+		}
+		
 		if (this.model.getCheckerAtPosition(checkerPositionAfterJumping) == "Empty") {
 			
 		    int[] currentPosition = checker.getPosition();
@@ -51,6 +61,18 @@ public class blackCheckerStrategy {
 			// you cannot do that
 		}
 		
+	}
+	
+	public boolean isCheckerWithinBoard(int[] position) {
+		int column = position[0];
+		int row = position[1];
+		
+		if ((0 <= column && column <= 7) && (0 <= row && row <= 7)) {
+			return true;
+		}
+		else {
+		    return false;
+		}
 	}
 	
 }
