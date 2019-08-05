@@ -13,15 +13,18 @@ public class blackCheckerStrategy {
 		int[] newPosition =  {currentPosition[0] - 1 , currentPosition[1] + 1}; // CHECK
 		// check if newPosition is inside the board here
 		if (!(this.isCheckerWithinBoard(newPosition))) {
-			// window that says checker is out of bounds
+			MessageBox.createMessageBox("Checker cannot be moved any further left", 
+					"Checker Cannot be Moved");
 			return;
 		}
 		
 		String checkerAtNewPosition = this.model.getCheckerAtPosition(newPosition);
 		
 		
-		if(checkerAtNewPosition == checker.getColour()) { // there is already a black checker at newPosition
-			// window that says you cannot do that
+		if(checkerAtNewPosition == checker.getColour()) { 
+			MessageBox.createMessageBox("There is already a black checker at that position",
+					"Checker Cannot be Moved");
+			
 		}
 		
 		else {
@@ -46,7 +49,8 @@ public class blackCheckerStrategy {
 				jumpedCheckerPosition[1] + 1}; //CHECK
 		
 		if (!(this.isCheckerWithinBoard(checkerPositionAfterJumping))) {
-			// window that says checker is out of bounds
+			MessageBox.createMessageBox("You're out of real estate on the board", 
+					"Checker Cannot be Moved");
 			return;
 		}
 		
@@ -58,7 +62,8 @@ public class blackCheckerStrategy {
 		    this.model.updateBoard(checker, currentPosition, jumpedCheckerPosition);
 		}
 		else { // there is a checker at checkerPositionAfterJumping
-			// you cannot do that
+			MessageBox.createMessageBox("Cannot make jump", "Checker Cannot be Moved");
+		
 		}
 		
 	}
