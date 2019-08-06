@@ -10,11 +10,11 @@ public class Game {
 	}
 
     public void moveLeft(Checker checker) {
-	    this.blackCheckerController.moveLeft(checker);
+	    this.blackCheckerController.move(checker,"left");
     }
     
     public void moveRight(Checker checker) {
-    	
+    	this.blackCheckerController.move(checker, "right");
     }
 
 }

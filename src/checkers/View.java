@@ -148,7 +148,10 @@ public class View extends Application implements Observer{
 		
 		
 		Button right = new Button("right");
-		right.setOnAction(e -> this.controller.moveRight(checker));
+		right.setOnAction(e -> {
+			this.controller.moveRight(checker);
+			window.close();
+		});
 		box.getChildren().addAll(left, right);
 		box.setAlignment(Pos.CENTER);
 		Scene scene = new Scene(box, 300, 300);
@@ -188,7 +191,6 @@ public class View extends Application implements Observer{
 			    else {
 			    	
 			    }
-			
 			
 	   
 		}
