@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 public class MessageBox {
 	
-	public static void createMessageBox(String message, String title) {
+	public static void createMessageBox(String title, String message) {
 		Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
 		window.setTitle(title);
