@@ -38,6 +38,14 @@ public class Checker extends Button {
 	public void setJumped(boolean jumped) {
 		this.jumped = jumped;
 	}
+
+	public int[] getJumpedCheckerPosition() {
+		return jumpedCheckerPosition;
+	}
+
+	public void setJumpedCheckerPosition(int[] jumpedCheckerPosition) {
+		this.jumpedCheckerPosition = jumpedCheckerPosition;
+	}
 	
 	
 
