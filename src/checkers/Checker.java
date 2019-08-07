@@ -6,6 +6,7 @@ public class Checker extends Button {
 	private int[] position;
 	private String colour;
 	private boolean jumped;
+	private int[] jumpedCheckerPosition;
 	
 	public Checker(int[] pos, String colour) {
 		this.position = pos;
