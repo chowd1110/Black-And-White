@@ -8,14 +8,34 @@ public class Game {
 	public Game(CheckerBoard model) {
 		this.model = model;
 		this.checkerController = new CheckerMovementHandler(this.model);
+		
 	}
 
     public void moveLeft(Checker checker) {
-	    this.checkerController.move(checker, "left");
+    	if (checker.getColour() == this.currentPlayer) {
+	        this.checkerController.move(checker, "left");
+    	}
+    	else {
+    		MessageBox.createMessageBox("You Cannot Move Now", "It's Not Your Turn");
+    	}
     }
     
     public void moveRight(Checker checker) {
-    	this.checkerController.move(checker, "right");
+    	if (checker.getColour() == this.currentPlayer) {
+    	    this.checkerController.move(checker, "right");
+    	}
+    	else {
+    		MessageBox.createMessageBox("You Cannot Move Now", "It's Not Your Turn");
+    	}
     }
+
+	public String getCurrentPlayer() {
+		return currentPlayer;
+	}
+
+	public void setCurrentPlayer(String currentPlayer) {
+		this.currentPlayer = currentPlayer;
+	}
+	
 
 }
