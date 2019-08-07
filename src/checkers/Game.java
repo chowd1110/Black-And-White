@@ -2,19 +2,19 @@ package checkers;
 
 public class Game {
 	private CheckerBoard model;
-	private blackCheckerStrategy blackCheckerController;
+	private CheckerMovementHandler checkerController;
 	
 	public Game(CheckerBoard model) {
 		this.model = model;
-		this.blackCheckerController = new blackCheckerStrategy(this.model);
+		this.checkerController = new CheckerMovementHandler(this.model);
 	}
 
     public void moveLeft(Checker checker) {
-	    this.blackCheckerController.move(checker,"left");
+	    this.checkerController.move(checker, "left");
     }
     
     public void moveRight(Checker checker) {
-    	this.blackCheckerController.move(checker, "right");
+    	this.checkerController.move(checker, "right");
     }
 
 }

@@ -1,9 +1,9 @@
 package checkers;
 
-public class blackCheckerStrategy {
+public class CheckerMovementHandler {
 	private CheckerBoard model;
 	
-	public blackCheckerStrategy(CheckerBoard board) {
+	public CheckerMovementHandler(CheckerBoard board) {
 		this.model = board;
 	}
 	
@@ -53,6 +53,7 @@ public class blackCheckerStrategy {
 		}	
 		
 	}
+	
 	
     private void jump(Checker checker, String direction, int[] jumpedCheckerPosition) {
     	
