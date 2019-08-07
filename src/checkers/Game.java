@@ -3,6 +3,7 @@ package checkers;
 public class Game {
 	private CheckerBoard model;
 	private CheckerMovementHandler checkerController;
+	private String currentPlayer = "Black";
 	
 	public Game(CheckerBoard model) {
 		this.model = model;
