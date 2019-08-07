@@ -180,24 +180,10 @@ public class View extends Application implements Observer{
 		int[] positionOfCheckerToModify = checkerToModify.getPosition();
 		
 		if (checkerToModify.hasJumped()) {
-			
-			    if(checkerToModify.getColour() == "Black") {
-			    	int[] positionOfJumpedChecker = {positionOfCheckerToModify[0] - 1 , 
-			    			positionOfCheckerToModify[1] + 1};
-			    	
-			    	this.removeJumpedChecker(positionOfJumpedChecker);
-			    	
-			    }
-			    else {
-			    	
-			    }
-			
-	   
+			this.removeJumpedChecker(checkerToModify.getJumpedCheckerPosition());
 		}
+		
 		this.board.add((Node)checker,positionOfCheckerToModify[0], positionOfCheckerToModify[1]); // add checker to new position	
-		
-		
-		
 		
 	}
 
@@ -212,8 +198,4 @@ public class View extends Application implements Observer{
 		}		
 	}
 	
-	
-	
-	
-
 }

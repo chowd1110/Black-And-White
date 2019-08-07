@@ -9,7 +9,7 @@ public class CheckerMovementHandler {
 	
 	public void move(Checker checker, String direction) {
 		int[] currentPosition = checker.getPosition();
-		int[] newPosition =  calcNewPosition(currentPosition, direction);
+		int[] newPosition =  calcNewPosition(currentPosition, direction, checker.getColour());
 		if (!(this.isCheckerWithinBoard(newPosition))) {
 			MessageBox.createMessageBox("The selected Checker Cannot be Moved", 
 					"You ran out of real estate");
@@ -18,9 +18,10 @@ public class CheckerMovementHandler {
 		
 		String checkerAtNewPosition = this.model.getCheckerAtPosition(newPosition);
 		
+		
 		if(checkerAtNewPosition == checker.getColour()) { 
 			MessageBox.createMessageBox("The selected Checker Cannot be Moved", 
-					"There is already a black checker at that position");
+					"There is already a same-coloured checker at that position");
 		}
 		
         else {
@@ -37,9 +38,24 @@ public class CheckerMovementHandler {
 		}		
 	}
 	
-	
-	
 	private int[] calcNewPosition(int[] position, String direction) {
+		if (direction == "left") {
+			int[] newPosition =  { position[0] - 1 , position[1] - 1 };
+			return newPosition;
+		
+		}
+		else { // direction == "right"
+			int[] newPosition =  {position[0] + 1 , position[1] - 1};
+			return newPosition;
+			
+		}	
+	}
+	
+	private int[] calcNewPosition(int[] position, String direction, String colour) { // for black checkers
+		if (colour == "White") {
+			int[] newPosition = calcNewPosition(position,direction);
+			return newPosition;
+		}
 		
 		if (direction == "left") {
 			int[] newPosition =  {position[0] - 1 , position[1] + 1};
@@ -57,7 +73,8 @@ public class CheckerMovementHandler {
 	
     private void jump(Checker checker, String direction, int[] jumpedCheckerPosition) {
     	
-    	int[] checkerPositionAfterJumping = calcNewPosition(jumpedCheckerPosition, direction);
+    	int[] checkerPositionAfterJumping = calcNewPosition(jumpedCheckerPosition, direction,  
+    			checker.getColour());
     	
     	if (!(this.isCheckerWithinBoard(checkerPositionAfterJumping))) {
 			MessageBox.createMessageBox("The Selected Checker Cannot be Moved" , 
@@ -71,6 +88,7 @@ public class CheckerMovementHandler {
 		    int[] currentPosition = checker.getPosition();
 		    checker.setPosition(checkerPositionAfterJumping);
 		    checker.setJumped(true);
+		    checker.setJumpedCheckerPosition(jumpedCheckerPosition);
 		    this.model.updateBoard(checker, currentPosition, jumpedCheckerPosition);
 		}
 		else { // there is a checker at checkerPositionAfterJumping
