@@ -2,6 +2,7 @@ package checkers;
 
 public class CheckerMovementHandler {
 	private CheckerBoard model;
+	private Game game;
 	
 	public CheckerMovementHandler(CheckerBoard board) {
 		this.model = board;
