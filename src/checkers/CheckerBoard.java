@@ -4,6 +4,8 @@ import java.util.Observable;
 
 public class CheckerBoard extends Observable {
 	private String[][] board = new String[8][8];
+	private int numBlackCheckers = 12;
+	private int numWhiteCheckers = 12;
 	
 	public CheckerBoard() {
 		initEmptyBoard(); 
