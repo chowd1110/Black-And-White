@@ -7,7 +7,8 @@ public class CheckerBoard extends Observable {
 	private String[][] board = new String[8][8];
 	private int numBlackCheckers = 12;
 	private int numWhiteCheckers = 12;
-	
+	private ArrayList <int[]> blackCheckerPos = new ArrayList<int[]>();
+	private ArrayList <int[]> whiteCheckerPos = new ArrayList<int[]>();
 	
 	
 	public CheckerBoard() {
