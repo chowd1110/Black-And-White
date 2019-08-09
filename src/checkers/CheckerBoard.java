@@ -51,7 +51,17 @@ public class CheckerBoard extends Observable {
 		
 	}
 	
+	private void decrementNumChecker(String colour) {
+		if (colour ==  "Black") {
+			this.numBlackCheckers -= 1;
+		}
+		else {
+			this.numWhiteCheckers -= 1;
+		}
+	}
+	
 	public void removeCheckerAtPosition(int[] position) {
+		
 		int column = position[0];
 		int row = position[1];
 		this.board[column][row] = "Empty";
