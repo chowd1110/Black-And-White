@@ -8,7 +8,7 @@ public class Game {
 	public Game(CheckerBoard model) {
 		this.model = model;
 		this.checkerController = new CheckerMovementHandler(this.model);
-		
+		this.checkerController.setGame(this);
 	}
 
     public void moveLeft(Checker checker) {
@@ -37,5 +37,13 @@ public class Game {
 		this.currentPlayer = currentPlayer;
 	}
 	
+	public void changeCurrentPlayer () {
+		if (this.currentPlayer == "Black" ) {
+			this.setCurrentPlayer("White");
+		}
+		else {
+			this.setCurrentPlayer("Black");
+		}
+	}
 
 }
