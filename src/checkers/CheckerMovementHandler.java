@@ -30,8 +30,9 @@ public class CheckerMovementHandler {
 			if (checkerAtNewPosition == "Empty") { // there is neither a white or black checker at newPosition
 				checker.setPosition(newPosition);
 				this.model.updateBoard(checker, currentPosition);
+				this.game.changeCurrentPlayer();
 			}
-			else { // there is a white checker at newPosition. Make a Jump
+			else { // there is a different coloured checker at newPosition. Make a Jump
 				this.jump(checker, direction, newPosition);
 				
 			}
@@ -91,6 +92,7 @@ public class CheckerMovementHandler {
 		    checker.setJumped(true);
 		    checker.setJumpedCheckerPosition(jumpedCheckerPosition);
 		    this.model.updateBoard(checker, currentPosition, jumpedCheckerPosition);
+		    
 		}
 		else { // there is a checker at checkerPositionAfterJumping
 			MessageBox.createMessageBox("The Selected Checker Cannot be Moved", 
