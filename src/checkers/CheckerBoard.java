@@ -1,11 +1,14 @@
 package checkers;
 
+import java.util.ArrayList;
 import java.util.Observable;
 
 public class CheckerBoard extends Observable {
 	private String[][] board = new String[8][8];
 	private int numBlackCheckers = 12;
 	private int numWhiteCheckers = 12;
+	
+	
 	
 	public CheckerBoard() {
 		initEmptyBoard(); 
@@ -68,16 +71,17 @@ public class CheckerBoard extends Observable {
 	}
 	
 	private void addCheckerAtPosition(String colour, int[] position ) {
+		
 		int column = position[0];
 		int row = position[1];
 		this.board[column][row] = colour;
+		
 	}
 
 	public void updateBoard(Checker checker, int[] previousPosition) {
 		
 		this.removeCheckerAtPosition(previousPosition); // remove checker from old position
 		this.addCheckerAtPosition(checker.getColour(), checker.getPosition());
-		
 		// ask View to update itself
 		this.setChanged();
 		this.notifyObservers(checker); 
@@ -85,13 +89,14 @@ public class CheckerBoard extends Observable {
 	}
 	
 	public void updateBoard(Checker checker, int[] previousPosition, int[] checkerToJump) {
+		
 		this.removeCheckerAtPosition(previousPosition);
 		this.removeCheckerAtPosition(checkerToJump);
+		this.decrementNumChecker(this.getCheckerAtPosition(checkerToJump)); // decrement the checker-count for the jumped checker
 		this.addCheckerAtPosition(checker.getColour(), checker.getPosition());
         this.setChanged();
         this.notifyObservers(checker);
-	
+        
 	}
 	
-
 }
