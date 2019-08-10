@@ -36,14 +36,20 @@ public class CheckerBoard extends Observable {
 		}
 	}
 	
-	private void addCheckers(int[][] positions, String Colour) {
+	private void addCheckers(int[][] positions, String colour) {
 		int column;
 		int row;
 		
 		for (int i = 0; i < positions.length; i++) {
+			if (colour == "Black") {
+				this.blackCheckerPos.add(positions[i]);
+			}
+			else {
+				this.whiteCheckerPos.add(positions[i]);
+			}
 			column = positions[i][0];
 			row = positions[i][1];
-			this.board[column][row] = Colour;
+			this.board[column][row] = colour;
 			
 		}
 	}
@@ -56,7 +62,7 @@ public class CheckerBoard extends Observable {
 	}
 	
 	private void decrementNumChecker(String colour) {
-		if (colour ==  "Black") {
+		if (colour == "Black") {
 			this.numBlackCheckers -= 1;
 		}
 		else {
