@@ -53,37 +53,6 @@ public class CheckerBoard extends Observable {
 			
 		}
 	}
-	
-	public String getCheckerAtPosition(int[] position) {
-		int column = position[0];
-		int row = position[1];
-		return this.board[column][row];
-		
-	}
-	
-	private void decrementNumChecker(String colour) {
-		if (colour == "Black") {
-			this.numBlackCheckers -= 1;
-		}
-		else {
-			this.numWhiteCheckers -= 1;
-		}
-	}
-	
-	public void removeCheckerAtPosition(int[] position) {
-		
-		int column = position[0];
-		int row = position[1];
-		this.board[column][row] = "Empty";
-	}
-	
-	private void addCheckerAtPosition(String colour, int[] position ) {
-		
-		int column = position[0];
-		int row = position[1];
-		this.board[column][row] = colour;
-		
-	}
 
 	public void updateBoard(Checker checker, int[] previousPosition) {
 		
@@ -105,5 +74,68 @@ public class CheckerBoard extends Observable {
         this.notifyObservers(checker);
         
 	}
+	
+	public String getCheckerAtPosition(int[] position) {
+		int column = position[0];
+		int row = position[1];
+		return this.board[column][row];
+		
+	}
+	
+	public void removeCheckerAtPosition(int[] position) {
+		
+		int column = position[0];
+		int row = position[1];
+		this.board[column][row] = "Empty";
+	}
+	
+	private void addCheckerAtPosition(String colour, int[] position ) {
+		
+		int column = position[0];
+		int row = position[1];
+		this.board[column][row] = colour;
+		
+	}
+	
+	private void decrementNumChecker(String colour) {
+		if (colour == "Black") {
+			this.setNumBlackCheckers(this.getNumBlackCheckers() - 1);
+		}
+		else {
+			this.setNumWhiteCheckers(this.getNumWhiteCheckers() - 1);
+		}
+	}
+	public String[][] getBoard() {
+		return board;
+	}
+
+	public int getNumBlackCheckers() {
+		return numBlackCheckers;
+	}
+	
+	public void setNumBlackCheckers(int numBlackCheckers) {
+		this.numBlackCheckers = numBlackCheckers;
+	}
+
+	public int getNumWhiteCheckers() {
+		return numWhiteCheckers;
+	}
+	
+	public void setNumWhiteCheckers(int numWhiteCheckers) {
+		this.numWhiteCheckers = numWhiteCheckers;
+	}
+
+	public ArrayList<int[]> getBlackCheckerPos() {
+		return blackCheckerPos;
+	}
+
+	public ArrayList<int[]> getWhiteCheckerPos() {
+		return whiteCheckerPos;
+	}
+
+	
+
+
+
 	
 }
