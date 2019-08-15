@@ -1,5 +1,7 @@
 package checkers;
 
+import java.util.ArrayList;
+
 public class Game {
 	private CheckerBoard model;
 	private CheckerMovementHandler checkerController;
@@ -45,5 +47,31 @@ public class Game {
 			this.setCurrentPlayer("Black");
 		}
 	}
+	
+	/*public boolean isJumpsAvailable(String colour) {
+		
+		String diagonalCheckerColour;
+		String[][] board = this.model.getBoard();
+		ArrayList<int[]> checkerPositions;
+		if (colour == "Black") {
+			checkerPositions = this.model.getBlackCheckerPos();
+			diagonalCheckerColour = "White";
+			
+		}
+		else {
+			checkerPositions = this.model.getWhiteCheckerPos();
+			diagonalCheckerColour = "Black";
+		}
+		
+		
+		for (int i = 0; i < checkerPositions.size(); i++) {
+			//if (this.checkerController.calcNewPosition(checkerPositions[i], "right"))
+			
+		}
+		
+		return false;
+		
+	}*/
+	
 
 }

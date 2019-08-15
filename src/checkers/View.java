@@ -52,11 +52,6 @@ public class View extends Application implements Observer{
 		primaryStage.setScene(scene);
 		primaryStage.show();
 		
-		
-		
-		
-		
-		
 	}
 	
 
