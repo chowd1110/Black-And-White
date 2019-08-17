@@ -49,6 +49,7 @@ public class Game {
 		else {
 			this.setCurrentPlayer("Black");
 		}
+		this.view.updateCurrentPlayerDisplay(this.currentPlayer);
 	}
 	
 	/*public boolean isJumpsAvailable(String colour) {

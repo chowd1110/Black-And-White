@@ -40,7 +40,7 @@ public class View extends Application implements Observer{
 	public void start(Stage primaryStage) throws Exception {
 		this.model = new CheckerBoard();
 		this.model.addObserver(this);
-		this.controller = new Game(this.model);
+		this.controller = new Game(this.model, this);
 		
 		
 		primaryStage.setTitle("Black and White");
@@ -189,7 +189,7 @@ public class View extends Application implements Observer{
 		text.setDisable(true);
 		text.setStyle("-fx-opacity: 1;");
 		text.setFont(Font.font(15));
-		this.setCurrentPlayerDisplay(text);
+		this.currentPlayerDisplay = text;
 		box.getChildren().addAll(label, text);
 		
 		return box;
@@ -222,8 +222,13 @@ public class View extends Application implements Observer{
 		}		
 	}
 
-	public void setCurrentPlayerDisplay(TextField currentPlayerDisplay) {
-		this.currentPlayerDisplay = currentPlayerDisplay;
+	public void updateCurrentPlayerDisplay(String colour) {
+		if (colour == "Black") {
+			this.currentPlayerDisplay.setText("Player 1 (Black)");
+		}
+		else {
+			this.currentPlayerDisplay.setText("Player 2 (White)");
+		}
 	}
 	
 }
