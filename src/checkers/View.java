@@ -26,6 +26,7 @@ import javafx.stage.Stage;
 
 public class View extends Application implements Observer{
 	private GridPane board;
+	private TextField currentPlayerDisplay;
 	private CheckerBoard model;
 	private Game controller;
 	private ArrayList <Checker> checkers = new ArrayList<Checker>();
@@ -188,6 +189,7 @@ public class View extends Application implements Observer{
 		text.setDisable(true);
 		text.setStyle("-fx-opacity: 1;");
 		text.setFont(Font.font(15));
+		this.setCurrentPlayerDisplay(text);
 		box.getChildren().addAll(label, text);
 		
 		return box;
@@ -218,6 +220,10 @@ public class View extends Application implements Observer{
 				 this.board.getChildren().remove(checker);			
 			 }
 		}		
+	}
+
+	public void setCurrentPlayerDisplay(TextField currentPlayerDisplay) {
+		this.currentPlayerDisplay = currentPlayerDisplay;
 	}
 	
 }
