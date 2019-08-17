@@ -1,20 +1,26 @@
 package checkers;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
 import javafx.application.Application;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -41,10 +47,18 @@ public class View extends Application implements Observer{
 		
 		BorderPane root =  new BorderPane();
 		
-		root.setRight(createRightPanel()); 
+		VBox rightPanel = new VBox();
+		//rightPanel.setMarginTop(10);
+	
+		rightPanel.getChildren().add(createCurrentPlayerBox());
+		
+		root.setRight(rightPanel); 
+		
 		root.setBottom(createBottomPanel());
 		this.board = this.createBoard();
         root.setCenter(board);
+        
+        
 		
 		
 		Scene scene = new Scene(root);
@@ -162,8 +176,21 @@ public class View extends Application implements Observer{
 		return null;
 	}
 
-	private VBox createRightPanel() {
-		return null;
+	private HBox createCurrentPlayerBox() {
+		HBox box =  new HBox(5);
+		
+		Label label = new Label("Current Player :");
+		label.setTranslateY(10);
+		label.setFont(Font.font("Cambria", 20));
+		
+		TextField text = new TextField("Player 1 (Black)");
+		text.setTranslateY(8);
+		text.setDisable(true);
+		text.setStyle("-fx-opacity: 1;");
+		text.setFont(Font.font(15));
+		box.getChildren().addAll(label, text);
+		
+		return box;
 	
 	}
 
