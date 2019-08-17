@@ -6,11 +6,14 @@ public class Game {
 	private CheckerBoard model;
 	private CheckerMovementHandler checkerController;
 	private String currentPlayer = "Black";
+	private View view;
 	
-	public Game(CheckerBoard model) {
+	public Game(CheckerBoard model, View view) {
 		this.model = model;
+		this.view = view;
 		this.checkerController = new CheckerMovementHandler(this.model);
 		this.checkerController.setGame(this);
+		
 	}
 
     public void moveLeft(Checker checker) {
