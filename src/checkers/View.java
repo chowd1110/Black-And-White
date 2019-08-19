@@ -205,8 +205,11 @@ public class View extends Application implements Observer{
 		
 		if (checkerToModify.hasJumped()) {
 			this.removeJumpedChecker(checkerToModify.getJumpedCheckerPosition());
-			checkerToModify.setJumped(false);
 			checkerToModify.setJumpedCheckerPosition(null);
+			
+			if (!(this.controller.isMoveAfterAJump()) ) {
+				checkerToModify.setJumped(false);
+			}
 		}
 		
 		this.board.add((Node)checker,positionOfCheckerToModify[0], positionOfCheckerToModify[1]); // add checker to new position	

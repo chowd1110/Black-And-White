@@ -7,6 +7,8 @@ public class Game {
 	private CheckerMovementHandler checkerController;
 	private String currentPlayer = "Black";
 	private View view;
+	private boolean moveAfterAJump;
+	//private int[] positionOfCheckerThatJumed;
 	
 	public Game(CheckerBoard model, View view) {
 		this.model = model;
@@ -50,6 +52,14 @@ public class Game {
 			this.setCurrentPlayer("Black");
 		}
 		this.view.updateCurrentPlayerDisplay(this.currentPlayer);
+	}
+
+	public boolean isMoveAfterAJump() {
+		return moveAfterAJump;
+	}
+
+	public void setMoveAfterAJump(boolean moveAfterAJump) {
+		this.moveAfterAJump = moveAfterAJump;
 	}
 	
 	/*public boolean isJumpsAvailable(String colour) {
