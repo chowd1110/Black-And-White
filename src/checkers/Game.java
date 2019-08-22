@@ -7,7 +7,7 @@ public class Game {
 	private CheckerMovementHandler checkerController;
 	private String currentPlayer = "Black";
 	private View view;
-	private boolean moveAfterAJump;
+	private boolean moveAfterAJump = false;
 	//private int[] positionOfCheckerThatJumed;
 	
 	public Game(CheckerBoard model, View view) {
@@ -19,6 +19,12 @@ public class Game {
 	}
 
     public void moveLeft(Checker checker) {
+    	if (this.moveAfterAJump && !(checker.hasJumped())) {
+    		MessageBox.createMessageBox("You Cannot Move This Piece", 
+    				"You Have to Move the Checker you Made the Jump with");
+    		return;
+    	}
+    	
     	if (checker.getColour() == this.currentPlayer) {
 	        this.checkerController.move(checker, "left");
     	}
@@ -28,6 +34,12 @@ public class Game {
     }
     
     public void moveRight(Checker checker) {
+    	if (this.moveAfterAJump && !(checker.hasJumped())) {
+    		MessageBox.createMessageBox("You Cannot Move This Piece", 
+    				"You Have to Move the Checker you Made the Jump with");
+    		return;
+    	}
+    	
     	if (checker.getColour() == this.currentPlayer) {
     	    this.checkerController.move(checker, "right");
     	}
@@ -60,6 +72,10 @@ public class Game {
 
 	public void setMoveAfterAJump(boolean moveAfterAJump) {
 		this.moveAfterAJump = moveAfterAJump;
+	}
+	
+	public CheckerMovementHandler getCheckerController() {
+		return checkerController;
 	}
 	
 	/*public boolean isJumpsAvailable(String colour) {

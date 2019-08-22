@@ -133,7 +133,7 @@ public class View extends Application implements Observer{
 			int rowIndex = whiteCheckerPos[i][1];
 			Checker checker = new Checker(whiteCheckerPos[i],"White");
 			this.checkers.add(checker);
-			checker.setTranslateX(15); // to align the checkers to the center of the tiles
+			checker.setTranslateX(15); // to align the checker to the center of the tile
 			checker.getStyleClass().add("white-checker");
 			checker.setOnAction(e -> this.switchWindow((Checker) e.getSource()));
 			
@@ -207,7 +207,13 @@ public class View extends Application implements Observer{
 			this.removeJumpedChecker(checkerToModify.getJumpedCheckerPosition());
 			checkerToModify.setJumpedCheckerPosition(null);
 			
-			if (!(this.controller.isMoveAfterAJump()) ) {
+		/*	if (!this.controller.getCheckerController().isJumpAvailable(checkerToModify.getColour(),
+					positionOfCheckerToModify)) {
+				this.controller.setMoveAfterAJump(false);
+                   				
+			}*/
+			
+			if (!(this.controller.isMoveAfterAJump())) {
 				checkerToModify.setJumped(false);
 			}
 		}

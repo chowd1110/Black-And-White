@@ -19,7 +19,7 @@ public class CheckerMovementHandler {
 		}
 		
 		String checkerAtNewPosition = this.model.getCheckerAtPosition(newPosition);
-		
+	
 		
 		if(checkerAtNewPosition == checker.getColour()) { 
 			MessageBox.createMessageBox("The selected Checker Cannot be Moved", 
@@ -27,8 +27,14 @@ public class CheckerMovementHandler {
 		}
 		
         else {
+        	
 			
 			if (checkerAtNewPosition == "Empty") { // there is neither a white or black checker at newPosition
+				if (this.game.isMoveAfterAJump()) {
+	        		MessageBox.createMessageBox("You Cannot Move in this Direction", 
+	        				"You have to Complete the Jump" );
+	        		return;
+	        	}
 				checker.setPosition(newPosition);
 				this.model.updateBoard(checker, currentPosition);
 				this.game.changeCurrentPlayer();
@@ -94,11 +100,11 @@ public class CheckerMovementHandler {
 		    checker.setPosition(checkerPositionAfterJumping);
 		    checker.setJumped(true);
 		    checker.setJumpedCheckerPosition(jumpedCheckerPosition);
-		    this.model.updateBoard(checker, currentPosition, jumpedCheckerPosition);
+		    
 		    if (!(this.isJumpAvailable(checker.getColour(), checkerPositionAfterJumping))){
 		    	this.game.changeCurrentPlayer();
 		    }
-		    
+		    this.model.updateBoard(checker, currentPosition, jumpedCheckerPosition);
 		    
 		}
 		else { // there is a checker at checkerPositionAfterJumping
@@ -130,10 +136,10 @@ public class CheckerMovementHandler {
 			oppColour = "White";
 		}
 		
-		int[] checkerDiagonalRight = this.calcNewPosition(checkerPosition, "right");
-		int[] checkerDiagonalLeft = this.calcNewPosition(checkerPosition, "left");
-		int[] twoSpacesDiagonallyRight = this.calcNewPosition(checkerDiagonalRight, "right");
-		int[] twoSpacesDiagonallyLeft = this.calcNewPosition(checkerDiagonalLeft, "left");
+		int[] checkerDiagonalRight = this.calcNewPosition(checkerPosition, "right", colour);
+		int[] checkerDiagonalLeft = this.calcNewPosition(checkerPosition, "left", colour);
+		int[] twoSpacesDiagonallyRight = this.calcNewPosition(checkerDiagonalRight, "right", colour);
+		int[] twoSpacesDiagonallyLeft = this.calcNewPosition(checkerDiagonalLeft, "left", colour);
 		
 		
 		if (this.isCheckerWithinBoard(checkerDiagonalRight) && 
@@ -141,15 +147,20 @@ public class CheckerMovementHandler {
 				this.isCheckerWithinBoard(twoSpacesDiagonallyRight) &&
 				this.model.getCheckerAtPosition(twoSpacesDiagonallyRight) == "Empty") {
 			
+			this.game.setMoveAfterAJump(true);
 			return true;
 		}
+		
 		if (this.isCheckerWithinBoard(checkerDiagonalLeft) &&
 			this.model.getCheckerAtPosition(checkerDiagonalLeft) == oppColour &&
 			this.isCheckerWithinBoard(twoSpacesDiagonallyLeft) && 
 			this.model.getCheckerAtPosition(checkerDiagonalLeft) == "Empty") {
-				return true;
+			
+			this.game.setMoveAfterAJump(true);
+			return true;
 		}
 		
+		this.game.setMoveAfterAJump(false);
 
 		return false;
 	}
